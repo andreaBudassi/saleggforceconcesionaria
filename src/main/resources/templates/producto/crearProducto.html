@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+    <body>
+
+        <nav th:insert="fragments/nav :: nav"></nav>
+
+        <section class="form-signin display-flex ALI">
+            <div class="container col-4">
+                <div class="row align-items-center">
+
+                    <div class="p-5 text-center">
+                        <h2 class="h3 mb-1 ">Cargar nuevo Producto</h2>
+                        <form th:action="@{/productos/formulario}" method='POST'th:object="${producto}" enctype="multipart/form-data">
+
+                            <!-- Existe un mensaje de error? Creo que abria que agregar el  model.put("error", "Hubo un error al crear el usuario, por favor reintente.); // model.put("formulario", "Usuario cargado con éxito);-->
+                            <p th:if="${error != null}" th:text="${error}" style="color:#870521"></p>
+                            <!--<p th:if="${formulario != null}" th:text="${formulario}" style="color:#1b8705"></p>-->
+
+                            <input type="hidden" th:value="${producto.id}" />
+
+                            <label>Modelo</label>
+                            <input type="text" class="form-control" name="modelo" th:value="${modelo}" />
+
+                            <!--                            <label>Marca</label>
+                                                        <input type="checkbox" class="form-control" name="marca" th:value="${marca}" />-->
+
+                            <div><label for="">Marca</label>
+                                <select name="marca" id="">
+                                    <option value="FIAT">Fiat</option>
+                                    <option value="PEUGEOT">Peugeot</option>
+                                    <option value="VOLSWAGEN">Wolswagen</option>
+                                    <option value="RENAULT">Renault</option>
+                                    <option value="NISSAN">Nisan</option>
+                                </select>
+                            </div>
+
+                            <label>Precio</label>
+                            <input type="text" class="form-control" name="usuario" th:value="${precio}" />
+
+                            <label>Foto</label>
+                            <input type="file" class="form-control" name="foto" accept='image/png, image/jpeg' value='Foto'/>
+
+                            <label>Ficha Tecnica</label>
+                            <input type="file" class="form-control" name="fichaTecnica" accept='image/png, image/jpeg' value='Ficha Tecnica' />
+
+                            <br /><button type="submit" class="btn btn-dark">Registrar</button>
+
+                        </form>
+                    </div>
+
+                </div>
+        </section>
+
+        <!--ESCRIBIR EL CODIGO ARRIBA DE ESTE COMENTARIO -->
+        <footer th:insert="fragments/footer :: footer"></footer>
+        <script th:replace="fragments/boostjs :: script"></script>
+
+    </body>
+
+</html>

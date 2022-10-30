@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+<body>
+
+    <nav th:insert="fragments/nav :: nav"></nav>
+
+    <div class="container-all main-content">
+        <img src="../../img/banner4.png">
+        <section class="form-signin display-flex ALI ">
+            <div class="container col-4">
+                <div class="row align-items-center">
+                    <div class="p-5 text-center">
+                        <h2 class="h3 mb-1 ">Registrar empleado</h2>
+                        <form action="@{/empleados/formulario}" method="POST" th:objet="${empleado}"
+                            enctype="multipart/form-data">
+
+                            <p th:if="${error != null}" th:text="${error}" style="color:#870521"></p>
+
+                            <input type="hidden" th:value="${empleado.id}" />
+
+                            <br />
+
+                            <label for="nombre" class="sr-only">Nombre</label>
+                            <input type="text" class="form-control" name="nombre" th:value="${nombre}"
+                                placeholder="Nombre" required autofocus />
+
+                            <br />
+
+                            <label for="apellido" class="sr-only">Apellido</label>
+                            <input type="text" class="form-control" name="apellido" th:value="${apellido}"
+                                placeholder="Apellido" required autofocus />
+
+                            <br />
+
+                            <label for="usuario" class="sr-only">Usuario</label>
+                            <input type="text" class="form-control" name="usuario" th:value="${usuario}"
+                                placeholder="Usuario" required autofocus />
+
+                            <br />
+
+                            <label for="dni" class="sr-only">DNI</label>
+                            <input type="text" class="form-control" name="dni" th:value="${dni}" placeholder="DNI"
+                                required autofocus />
+
+                            <br />
+
+                            <label for="clave" class="sr-only">Clave</label>
+                            <input type="password" class="form-control" name="clave" th:value="${clave}"
+                                placeholder="Clave" required autofocus />
+
+                            <br /><button type="submit" class="btn btn-dark mx-3">Registrar</button>
+                            <a th:href="@{/empleados}" class="btn btn-dark mx-3">Volver</a>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer th:insert="fragments/footer :: footer"></footer>
+    <script th:replace="fragments/boostjs :: script"></script>
+
+</body>
+
+</html>

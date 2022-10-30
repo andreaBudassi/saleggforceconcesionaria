@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmnls:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head th:insert="fragments/head :: head(title ='SalEGG Force')"></head>
+
+<body>
+
+    <nav th:insert="fragments/nav :: nav"></nav>
+ 
+
+    <div class="container-all main-content">
+        <img src="../../img/banner4.png">
+        <section class="form-signin display-flex ALI ">
+            <div class="container col-4">
+                <div class="row align-items-center">
+                    <div class="p-5 text-center">
+                        <h2 class="h3 mb-1 ">Gestionar cliente</h2>
+
+                        <div th:if="${error}!=null">
+                            <p th:text="${error}" style="color:#870521"></p>
+                        </div>
+
+
+                        apellido
+                        nombre
+                        telefono
+                        mail
+                        Marca
+                        modelo
+                        ESTADO
+                        horarioContacto
+                        comentario
+
+
+                        <form th:action="@{/productos/modificar/__${producto.id}__}" method="POST"
+                            th:objet="${producto}" enctype="multipart/form-data">
+                            <input hidden th:value="${id}" name="id">
+
+                            <br />
+
+                            <label for="modelo" class="sr-only">Modelo</label>
+                            <input type="text" class="form-control" name="modelo" th:value="${producto.modelo}"
+                                placeholder="Modelo" required autofocus />
+
+                            <br />
+
+                            <label for="marca" class="sr-only">Marca</label>
+                            <input type="text" class="form-control" name="marca" th:value="${producto.marca}"
+                                placeholder="Marca" required autofocus />
+
+                            <br />
+
+                            <label for="precio" class="sr-only">Precio</label>
+                            <input type="text" class="form-control" name="precio" th:value="${producto.precio}"
+                                placeholder="Precio" required autofocus />
+
+                            <br />
+
+                            <label for="foto" class="sr-only">Foto</label>
+                            <input type="text" class="form-control" name="foto" th:value="${producto.foto}"
+                                placeholder="Foto" required autofocus />
+
+                            <br />
+
+                            <label for="fichaTecnica" class="sr-only">FichaTecnica</label>
+                            <input type="text" class="form-control" name="fichaTecnica"
+                                th:value="${producto.fichaTecnica}" placeholder="Ficha Tecnica" required autofocus />
+
+                            <br /><button type="submit" class="btn btn-dark mx-3">Enviar</button>
+                            <a th:href="@{/clientes}" class="btn btn-dark mx-3">Volver</a>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer th:insert="fragments/footer :: footer"></footer>
+    <script th:replace="fragments/boostjs :: script"></script>
+        
+</body>
+
+</html>
